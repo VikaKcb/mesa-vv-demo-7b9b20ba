@@ -1,7 +1,7 @@
 {
   "name": "Acesso reservado",
   "short_name": "Reservado",
-  "description": "Portal de revisao por link reservado.",
+  "description": "Portal de revisão por link reservado.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f6f8f5",
