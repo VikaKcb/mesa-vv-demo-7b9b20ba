@@ -1,0 +1,1 @@
+{"version":4,"kdf":{"name":"PBKDF2","hash":"SHA-256","iterations":250000,"salt":"nXyFxstWPZiEsMszwu/A8Q=="},"cipher":"AES-GCM","iv":"cObHovTMrefINDan","chunks":["secure/payload-000.txt","secure/payload-001.txt","secure/payload-002.txt"]}

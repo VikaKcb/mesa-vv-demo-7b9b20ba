@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Esta demonstração é destinada apenas à revisão por link direto.
+# Não é uma página pública de marketing e não deve ser indexada.

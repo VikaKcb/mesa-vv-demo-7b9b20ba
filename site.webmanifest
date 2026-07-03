@@ -1,0 +1,16 @@
+{
+  "name": "Acesso reservado",
+  "short_name": "Reservado",
+  "description": "Portal de revisao por link reservado.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f8f5",
+  "theme_color": "#08786e",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}

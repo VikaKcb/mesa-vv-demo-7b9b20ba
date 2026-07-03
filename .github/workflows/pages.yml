@@ -1,0 +1,50 @@
+name: Publish static site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare public artifact
+        run: |
+          if find . -path './.git' -prune -o -path './secure/payload-*.txt' -prune -o -path './secure/payload.json' -prune -o -type f \( -name '*.pdf' -o -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \) -print | grep -q .; then
+            echo "Unexpected clear binary asset outside the encrypted payload."
+            exit 1
+          fi
+          mkdir -p _site/assets _site/secure
+          cp index.html 404.html app.js styles.css robots.txt .nojekyll site.webmanifest _site/
+          cp assets/favicon.svg _site/assets/favicon.svg
+          cp secure/payload.json _site/secure/payload.json
+          cp secure/payload-*.txt _site/secure/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
